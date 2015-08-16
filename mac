@@ -129,8 +129,16 @@ brew_install_or_upgrade 'node'
 brew_install_or_upgrade 'openssl'
 brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'libyaml'
+brew_install_or_upgrade 'chruby'
+brew_install_or_upgrade 'ruby-install'
 
-ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
+echo "gem: --no-document" >> ~/.gemrc
+echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.zshenv
+echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.zshenv
+echo "source /usr/local/opt/chruby/share/chruby/chruby.sh" >> ~/.bashrc
+echo "source /usr/local/opt/chruby/share/chruby/auto.sh" >> ~/.bashrc
+
+ruby-install ruby
 
 if [ -f "$HOME/.laptop.local" ]; then
   . "$HOME/.laptop.local"
